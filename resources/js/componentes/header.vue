@@ -1,7 +1,6 @@
-
 <template>
   <div class="min-h-screen bg-[rgba(241,241,240,1)]">
-    <div class="bg-orange-400 text-white rounded-full px-10 py-4 shadow-md max-w-7xl mt-6 flex items-center justify-between mx-10">
+    <div class="bg-[rgba(235,102,55,255)] text-white rounded-full px-10 py-4 shadow-md max-w-7xl mt-6 flex items-center justify-between mx-10">
       <h1 class="text-2xl font-bold">Agencia Ir</h1>
 
       <!-- MENÚ DE NAVEGACIÓN -->
@@ -16,13 +15,13 @@
         </button>
 
         <!-- DROPDOWN "¡Contáctanos!" -->
-        <div class="relative group">
-          <button class="text-white text-lg font-medium border-b-2 border-transparent group-hover:border-white transition duration-300">
+        <div class="relative" @mouseenter="mostrarDropdown" @mouseleave="ocultarDropdown">
+          <button class="text-white text-lg font-medium border-b-2 border-transparent transition duration-300" :class="{ 'border-white': dropdownVisible }">
             ¡Contáctanos!
           </button>
 
           <!-- BOTÓN VER PRODUCTOS DENTRO DEL DROPDOWN -->
-          <div class="absolute left-0 mt-2 hidden group-hover:block z-10 bg-white rounded-xl shadow-lg py-2">
+          <div v-show="dropdownVisible" class="absolute left-0 mt-2 z-10 bg-white rounded-xl shadow-lg py-2">
             <button @click="mostrarTabla" class="block w-full text-left px-6 py-2 text-orange-500 hover:bg-orange-100 transition font-semibold whitespace-nowrap">
               De cucuta pal mundo!
             </button>
@@ -73,9 +72,30 @@ const productos = ref([
 ])
 
 const tablaVisible = ref(false)
+const dropdownVisible = ref(false)
+let timeoutId = null
+
+function mostrarDropdown() {
+  // Cancelar cualquier timeout pendiente
+  if (timeoutId) {
+    clearTimeout(timeoutId)
+    timeoutId = null
+  }
+  dropdownVisible.value = true
+}
+
+function ocultarDropdown() {
+  // Agregar un retraso de 300ms antes de ocultar el dropdown
+  timeoutId = setTimeout(() => {
+    dropdownVisible.value = false
+    timeoutId = null
+  }, 300)
+}
 
 function mostrarTabla() {
   tablaVisible.value = !tablaVisible.value
+  // Ocultar el dropdown después de hacer clic
+  dropdownVisible.value = false
 }
 
 function eliminarProducto(id) {
