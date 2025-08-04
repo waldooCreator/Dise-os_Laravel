@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-6 ml-6 flex items-center bg-white rounded-full shadow-md px-4 py-2 w-[430px] max-w-full">
+  <div class="mt-2 ml-6 flex items-center bg-white rounded-full shadow-md px-4 py-2 w-[430px] max-w-full">
   <span class="text-sm text-gray-700 font-medium mr-3 whitespace-nowrap">
     Rastrear por número de guía:
   </span>

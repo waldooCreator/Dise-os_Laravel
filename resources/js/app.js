@@ -1,5 +1,6 @@
+// resources/js/app.js
 import { createApp } from 'vue'
+import App from './componentes/app.vue'
 import '../css/app.css'
-import Index from './componentes/targets.vue'
 
-createApp(Index).mount('#app')
+createApp(App).mount('#app')

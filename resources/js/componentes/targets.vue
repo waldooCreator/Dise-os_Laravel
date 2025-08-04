@@ -32,7 +32,7 @@
             
             <!-- ÍCONO DE FLECHA -->
             <div class="self-end">
-              <div class="w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
+              <div class="w-10 h-10 bg-[rgba(235,102,55,255)] rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
@@ -52,7 +52,7 @@
               <h3 class="text-xl font-bold uppercase tracking-wide mb-2">{{ servicesData.transporte.title }}</h3>
             </div>
             <div class="self-end">
-              <div class="w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
+              <div class="w-10 h-10 bg-[rgba(235,102,55,255)] rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
@@ -72,7 +72,7 @@
               <h3 class="text-lg font-bold uppercase tracking-wide mb-2">{{ servicesData.cargaInternacional.title }}</h3>
             </div>
             <div class="self-end">
-              <div class="w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
+              <div class="w-10 h-10 bg-[rgba(235,102,55,255)] rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
@@ -92,7 +92,7 @@
               <h3 class="text-xl font-bold uppercase tracking-wide mb-2 text-white">{{ servicesData.logisticaIntegral.title }}</h3>
             </div>
             <div class="self-end">
-              <div class="w-10 h-10 bg-orange-400 rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
+              <div class="w-10 h-10 bg-[rgba(235,102,55,255)] rounded-full flex items-center justify-center group-hover:bg-orange-500 transition-colors duration-300">
                 <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                 </svg>
