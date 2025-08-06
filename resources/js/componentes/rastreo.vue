@@ -1,16 +1,16 @@
 <template>
-    <div class="relative w-[430px] max-w-full z-10">
+    <div class="relative w-full max-w-md mx-auto z-10">
         <!-- Barra compacta (siempre visible) -->
         <div 
-            class="flex items-center justify-between bg-white rounded-full shadow-md px-4 py-4 cursor-pointer hover:shadow-lg transition-shadow"
+            class="flex items-center justify-between bg-white rounded-full shadow-md px-4 py-3 cursor-pointer hover:shadow-lg transition-shadow"
             @click="toggleExpanded"
         >
-            <span class="text-sm text-gray-700 font-medium whitespace-nowrap">
-                Rastrear por número de guía
+            <span class="text-sm text-gray-700 font-medium">
+                Rastrear Envio
             </span>
             <!-- Icono flecha -->
             <svg 
-                class="w-4 h-4 text-[rgb(235,102,55)] transform transition-transform duration-200"
+                class="w-4 h-4 text-[rgb(235,102,55)] transform transition-transform duration-200 flex-shrink-0 ml-2"
                 :class="{ 'rotate-180': isExpanded }"
                 fill="none" 
                 stroke="currentColor" 

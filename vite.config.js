@@ -10,4 +10,8 @@ export default defineConfig({
         }),
         vue(),
     ],
+    server: {
+        hmr: false, // Mantén desactivado el HMR por ahora
+        allowedHosts: ['92e7c17bbcad.ngrok-free.app'], // Añade el host de ngrok
+    },
 });

@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-screen bg-[rgba(241,241,240,1)]">
+    <div class="bg-[rgba(241,241,240,1)]">
         <!-- SECCIÓN DE TARGETS DE SERVICIOS -->
         <div class="py-16 max-w-7xl mx-auto px-8">
 
@@ -11,7 +11,7 @@
             </div>
 
             <!-- CONTENEDOR DE TARGETS (4 HORIZONTALES) -->
-            <div class="flex justify-center gap-6 flex-wrap">
+            <div class="flex justify-center gap-14 flex-wrap">
 
                 <!-- TARGET 1: N servicios -->
                 <div @click="handleTargetClick('Nuestros servicios')"

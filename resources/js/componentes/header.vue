@@ -1,65 +1,160 @@
 <template>
     <div
-        class="bg-[rgba(235,102,55,255)] mt-8 text-white rounded-full px-10 py-4 shadow-md max-w-7xl mx-10 flex items-center justify-between">
-        <h1 class="text-2xl font-bold">Agencia Ir</h1>
+        class="bg-[rgba(235,102,55,255)] mt-4 md:mt-8 text-white rounded-2xl md:rounded-full px-4 sm:px-6 md:px-10 lg:px-16 py-3 md:py-4 shadow-md max-w-7xl mx-auto w-full flex items-center justify-between mb-8 md:mb-12 relative">
 
-        <!-- MENÚ DE NAVEGACIÓN -->
-        <div class="flex gap-10 text-lg font-medium relative">
+        <!-- LOGO/TÍTULO -->
+        <h1 class="text-xl sm:text-2xl md:text-3xl font-bold">
+            Agencia Ir
+        </h1>
+
+        <!-- BOTÓN HAMBURGUESA MÓVIL -->
+        <button @click="toggleMobileMenu"
+            class="md:hidden flex flex-col items-center justify-center w-8 h-8 relative z-50">
+            <span class="block w-6 h-0.5 bg-white mb-1 transition-all duration-300 transform"
+                :class="{ 'rotate-45 translate-y-1.5 mb-0': mobileMenuOpen }"></span>
+            <span class="block w-6 h-0.5 bg-white mb-1 transition-all duration-300"
+                :class="{ 'opacity-0': mobileMenuOpen }"></span>
+            <span class="block w-6 h-0.5 bg-white transition-all duration-300 transform"
+                :class="{ '-rotate-45 -translate-y-1.5': mobileMenuOpen }"></span>
+        </button>
+
+        <!-- MENÚ DESPLEGABLE MÓVIL -->
+        <div v-show="mobileMenuOpen"
+            class="md:hidden absolute top-full right-0 mt-2 bg-white rounded-xl shadow-xl py-3 w-[80vw] max-w-[350px] z-40 border border-gray-100">
             <button
-                class="text-white text-lg font-medium border-b-2 border-transparent hover:border-white transition duration-300">
-                Servicios
+                class="block w-full text-left text-orange-600 font-medium py-2.5 px-4 hover:bg-orange-50 transition duration-200">
+                Envía
             </button>
 
-            <button
-                class="text-white text-lg font-medium border-b-2 border-transparent hover:border-white transition duration-300">
-                ¡Conócenos!
-            </button>
-
-            <div class="relative" @mouseenter="mostrarDropdown" @mouseleave="ocultarDropdown">
-                <button class="text-white text-lg font-medium border-b-2 border-transparent transition duration-300"
-                    :class="{ 'border-white': dropdownVisible }">
-                    ¡Contáctanos!
+            <!-- SERVICIOS MÓVIL -->
+            <div class="relative">
+                <button @click="toggleMobileDropdown('servicios')"
+                    class="flex items-center justify-between w-full text-left text-orange-600 font-medium py-2.5 px-4 hover:bg-orange-50 transition duration-200">
+                    <span>Servicios</span>
+                    <svg class="w-4 h-4 transform transition-transform duration-200"
+                        :class="{ 'rotate-180': mobileDropdowns.servicios }" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
                 </button>
+                <div v-show="mobileDropdowns.servicios"
+                    class="bg-orange-50 border-l-2 border-orange-200 ml-4 mr-2 rounded">
+                    <button
+                        class="block w-full text-left px-4 py-2 text-orange-500 hover:bg-orange-100 transition text-sm font-medium">
+                        Pick‑Up
+                    </button>
+                    <button
+                        class="block w-full text-left px-4 py-2 text-orange-500 hover:bg-orange-100 transition text-sm font-medium">
+                        UPS Internacional
+                    </button>
+                    <button
+                        class="block w-full text-left px-4 py-2 text-orange-500 hover:bg-orange-100 transition text-sm font-medium">
+                        TCC
+                    </button>
+                </div>
+            </div>
 
-                <div v-show="dropdownVisible" class="absolute left-0 mt-2 z-10 bg-white rounded-xl shadow-lg py-2">
-                    <button @click="mostrarTabla"
-                        class="block w-full text-left px-6 py-2 text-orange-500 hover:bg-orange-100 transition font-semibold whitespace-nowrap">
-                        De cucuta pal mundo!
+            <!-- BENEFICIOS MÓVIL -->
+            <div class="relative">
+                <button @click="toggleMobileDropdown('beneficios')"
+                    class="flex items-center justify-between w-full text-left text-orange-600 font-medium py-2.5 px-4 hover:bg-orange-50 transition duration-200">
+                    <span>Beneficios</span>
+                    <svg class="w-4 h-4 transform transition-transform duration-200"
+                        :class="{ 'rotate-180': mobileDropdowns.beneficios }" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div v-show="mobileDropdowns.beneficios"
+                    class="bg-orange-50 border-l-2 border-orange-200 ml-4 mr-2 rounded">
+                    <button
+                        class="block w-full text-left px-4 py-2 text-orange-500 hover:bg-orange-100 transition text-sm font-medium">
+                        De Cúcuta Pal' Mundo
+                    </button>
+                    <button
+                        class="block w-full text-left px-4 py-2 text-orange-500 hover:bg-orange-100 transition text-sm font-medium">
+                        Cliente Leal
+                    </button>
+                    <button
+                        class="block w-full text-left px-4 py-2 text-orange-500 hover:bg-orange-100 transition text-sm font-medium">
+                        Acumula tus Box
                     </button>
                 </div>
             </div>
 
             <button
-                class="text-white text-lg font-medium border-b-2 border-transparent hover:border-white transition duration-300">
+                class="block w-full text-left text-orange-600 font-medium py-2.5 px-4 hover:bg-orange-50 transition duration-200">
+                Convenios
+            </button>
+            <button
+                class="block w-full text-left text-orange-600 font-medium py-2.5 px-4 hover:bg-orange-50 transition duration-200">
                 Regístrate
             </button>
         </div>
-    </div>
 
-    <!-- SECCIÓN DE PRODUCTOS -->
-    <div class="p-8 max-w-7xl mx-auto">
-        <table v-if="tablaVisible" class="mt-6 w-full border border-gray-200 rounded-xl shadow bg-white text-gray-800">
-            <thead class="bg-gray-100 rounded-t-xl">
-                <tr>
-                    <th class="p-3 border">ID</th>
-                    <th class="p-3 border">Nombre</th>
-                    <th class="p-3 border">Precio</th>
-                    <th class="p-3 border">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="producto in productos" :key="producto.id">
-                    <td class="p-3 border">{{ producto . id }}</td>
-                    <td class="p-3 border">{{ producto . nombre }}</td>
-                    <td class="p-3 border">${{ producto . precio . toFixed(2) }}</td>
-                    <td class="p-3 border flex gap-3">
-                        <button class="text-blue-600 hover:underline">Editar</button>
-                        <button @click="eliminarProducto(producto.id)"
-                            class="text-red-600 hover:underline">Eliminar</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <!-- MENÚ DE NAVEGACIÓN DESKTOP -->
+        <div class="hidden md:flex gap-4 lg:gap-8 xl:gap-12 text-base lg:text-lg xl:text-xl font-medium relative">
+            <button
+                class="text-white font-medium border-b-2 border-transparent hover:border-white transition duration-300 py-1">
+                Envía
+            </button>
+
+            <!-- SERVICIOS DROPDOWN -->
+            <div class="relative" @mouseenter="mostrarDropdown('servicios')" @mouseleave="ocultarDropdown('servicios')">
+                <button class="text-white font-medium border-b-2 border-transparent transition duration-300 py-1"
+                    :class="{ 'border-white': dropdownsVisible.servicios }">
+                    Servicios
+                </button>
+                <div v-show="dropdownsVisible.servicios"
+                    class="absolute left-0 mt-2 z-20 bg-white rounded-xl shadow-lg py-2 min-w-[180px]">
+                    <button
+                        class="block w-full text-left px-6 py-2 text-orange-500 hover:bg-orange-100 transition font-semibold whitespace-nowrap">
+                        Pick‑Up
+                    </button>
+                    <button
+                        class="block w-full text-left px-6 py-2 text-orange-500 hover:bg-orange-100 transition font-semibold whitespace-nowrap">
+                        UPS Internacional
+                    </button>
+                    <button
+                        class="block w-full text-left px-6 py-2 text-orange-500 hover:bg-orange-100 transition font-semibold whitespace-nowrap">
+                        TCC
+                    </button>
+                </div>
+            </div>
+
+            <!-- BENEFICIOS DROPDOWN -->
+            <div class="relative" @mouseenter="mostrarDropdown('beneficios')"
+                @mouseleave="ocultarDropdown('beneficios')">
+                <button class="text-white font-medium border-b-2 border-transparent transition duration-300 py-1"
+                    :class="{ 'border-white': dropdownsVisible.beneficios }">
+                    Beneficios
+                </button>
+                <div v-show="dropdownsVisible.beneficios"
+                    class="absolute left-0 mt-2 z-20 bg-white rounded-xl shadow-lg py-2 min-w-[200px]">
+                    <button
+                        class="block w-full text-left px-6 py-2 text-orange-500 hover:bg-orange-100 transition font-semibold whitespace-nowrap">
+                        De Cúcuta Pal' Mundo
+                    </button>
+                    <button
+                        class="block w-full text-left px-6 py-2 text-orange-500 hover:bg-orange-100 transition font-semibold whitespace-nowrap">
+                        Cliente Leal
+                    </button>
+                    <button
+                        class="block w-full text-left px-6 py-2 text-orange-500 hover:bg-orange-100 transition font-semibold whitespace-nowrap">
+                        Acumula tus Box
+                    </button>
+                </div>
+            </div>
+
+            <button
+                class="text-white font-medium border-b-2 border-transparent hover:border-white transition duration-300 py-1">
+                Convenios
+            </button>
+            <button
+                class="text-white font-medium border-b-2 border-transparent hover:border-white transition duration-300 py-1">
+                Regístrate
+            </button>
+        </div>
     </div>
 </template>
 
@@ -68,50 +163,46 @@
         ref
     } from 'vue'
 
-    const productos = ref([{
-            id: 1,
-            nombre: 'Producto A',
-            precio: 10000
-        },
-        {
-            id: 2,
-            nombre: 'Producto B',
-            precio: 25000
-        },
-        {
-            id: 3,
-            nombre: 'Producto C',
-            precio: 35000
-        }
-    ])
+    // Dropdowns desktop
+    const dropdownsVisible = ref({
+        servicios: false,
+        beneficios: false
+    })
+    const mobileDropdowns = ref({
+        servicios: false,
+        beneficios: false
+    })
 
-    const tablaVisible = ref(false)
-    const dropdownVisible = ref(false)
-    let timeoutId = null
+    // Menú móvil
+    const mobileMenuOpen = ref(false)
+    const timeouts = ref({})
 
-    function mostrarDropdown() {
-        if (timeoutId) {
-            clearTimeout(timeoutId)
-            timeoutId = null
-        }
-        dropdownVisible.value = true
+    function mostrarDropdown(tipo) {
+        Object.keys(dropdownsVisible.value).forEach(key => {
+            if (key !== tipo) dropdownsVisible.value[key] = false
+        })
+        if (timeouts.value[tipo]) clearTimeout(timeouts.value[tipo])
+        dropdownsVisible.value[tipo] = true
     }
 
-    function ocultarDropdown() {
-        timeoutId = setTimeout(() => {
-            dropdownVisible.value = false
-            timeoutId = null
+    function ocultarDropdown(tipo) {
+        timeouts.value[tipo] = setTimeout(() => {
+            dropdownsVisible.value[tipo] = false
+            delete timeouts.value[tipo]
         }, 300)
     }
 
-    function mostrarTabla() {
-        tablaVisible.value = !tablaVisible.value
-        dropdownVisible.value = false
+    function toggleMobileMenu() {
+        mobileMenuOpen.value = !mobileMenuOpen.value
+        if (!mobileMenuOpen.value) {
+            mobileDropdowns.value = {
+                servicios: false,
+                beneficios: false
+            }
+        }
     }
 
-    function eliminarProducto(id) {
-        if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
-            productos.value = productos.value.filter(p => p.id !== id)
-        }
+    function toggleMobileDropdown(tipo) {
+        mobileDropdowns.value[tipo] = !mobileDropdowns.value[tipo]
     }
 </script>

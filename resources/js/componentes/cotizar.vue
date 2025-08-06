@@ -1,16 +1,22 @@
 <template>
-    <div class="relative w-[430px] max-w-full z-10">
+    <div 
+        class="relative w-full mx-auto z-10 transition-all duration-300"
+        :class="{
+            'max-w-md': !isExpanded || isDesktop,
+            'max-w-full px-4': isExpanded && !isDesktop
+        }"
+    >
         <!-- Barra compacta (siempre visible) -->
         <div 
-            class="flex items-center justify-between bg-white rounded-full shadow-md px-4 py-4 cursor-pointer hover:shadow-lg transition-shadow"
+            class="flex items-center justify-between bg-white rounded-full shadow-md px-4 py-3 cursor-pointer hover:shadow-lg transition-shadow"
             @click="toggleExpanded"
         >
-            <span class="text-sm text-gray-700 font-medium whitespace-nowrap">
+            <span class="text-sm text-gray-700 font-medium">
                 Cotizar envío
             </span>
             <!-- Icono flecha -->
             <svg 
-                class="w-4 h-4 text-[rgb(235,102,55)] transform transition-transform duration-200"
+                class="w-4 h-4 text-[rgb(235,102,55)] transform transition-transform duration-200 flex-shrink-0 ml-2"
                 :class="{ 'rotate-180': isExpanded }"
                 fill="none" 
                 stroke="currentColor" 
@@ -116,7 +122,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted, defineEmits } from 'vue'
+
+const emit = defineEmits(['abrio', 'cerro'])
 
 const isExpanded = ref(false)
 const origen = ref('')
@@ -125,9 +133,25 @@ const peso = ref('')
 const altura = ref('')
 const ancho = ref('')
 const largo = ref('')
+const isDesktop = ref(false)
+
+const updateViewport = () => {
+    isDesktop.value = window.innerWidth >= 768
+}
+
+onMounted(() => {
+    updateViewport()
+    window.addEventListener('resize', updateViewport)
+})
+
+onUnmounted(() => {
+    window.removeEventListener('resize', updateViewport)
+})
 
 const toggleExpanded = () => {
     isExpanded.value = !isExpanded.value
+    if (isExpanded.value) emit('abrio')
+    else emit('cerro')
 }
 
 const cotizar = () => {
@@ -142,24 +166,9 @@ const cotizar = () => {
                 largo: largo.value
             }
         })
-        // Aquí puedes agregar la lógica para cotizar
-        // Por ejemplo, hacer una llamada a la API
         alert(`Cotizando envío de ${origen.value} a ${destino.value}\nPeso: ${peso.value}kg\nDimensiones: ${altura.value}x${ancho.value}x${largo.value}cm`)
     } else {
         alert('Por favor completa todos los campos')
     }
 }
-
-const limpiarFormulario = () => {
-    origen.value = ''
-    destino.value = ''
-    peso.value = ''
-    altura.value = ''
-    ancho.value = ''
-    largo.value = ''
-}
 </script>
-
-<style scoped>
-/* Estilos adicionales si necesitas personalizar más */
-</style>

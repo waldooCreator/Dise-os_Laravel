@@ -1,35 +1,36 @@
 <template>
-    <div class="mt-12 px-12 mb-14">
-        <div class="relative w-full max-w-5xl mx-auto overflow-hidden rounded-xl">
+    <div class="mt-8 md:mt-12 px-4 md:px-8 lg:px-12 mb-10 md:mb-14">
+        <div class="relative w-full max-w-none lg:max-w-7xl mx-auto overflow-hidden rounded-xl lg:rounded-2xl">
             <!-- Carrusel -->
-            <div class="relative h-80">
-                <Transition name="fade" mode="out-in">
-                    <img :src="images[currentIndex]" :key="images[currentIndex]"
-                        class="absolute inset-0 w-full h-full object-cover" :alt="`Slide ${currentIndex + 1}`" />
-                </Transition>
-            </div>
+<div class="relative h-48 sm:h-56 md:h-64 lg:h-[20rem] xl:h-[24rem] 2xl:h-[28rem]">
+    <Transition name="fade" mode="out-in">
+        <img :src="images[currentIndex]" :key="images[currentIndex]"
+            class="absolute inset-0 w-full h-full object-cover" :alt="`Slide ${currentIndex + 1}`" />
+    </Transition>
+</div>
+
 
             <!-- Indicadores -->
-            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+            <div class="absolute bottom-3 md:bottom-4 lg:bottom-6 left-1/2 transform -translate-x-1/2 flex gap-2 md:gap-3">
                 <button v-for="(img, i) in images" :key="i" @click="currentIndex = i"
-                    class="w-3 h-3 rounded-full transition-colors duration-200"
+                    class="w-2.5 h-2.5 md:w-3 md:h-3 lg:w-4 lg:h-4 rounded-full transition-colors duration-200"
                     :class="currentIndex === i ? 'bg-white' : 'bg-gray-400 hover:bg-gray-300'"
                     :aria-label="`Ir a slide ${i + 1}`"></button>
             </div>
 
             <!-- Controles de navegación opcionales -->
             <button @click="prevSlide"
-                class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-2 rounded-full transition-all duration-200"
+                class="absolute top-1/2 left-2 md:left-4 lg:left-6 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-1.5 md:p-2 lg:p-3 rounded-full transition-all duration-200"
                 aria-label="Slide anterior">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4 md:w-6 md:h-6 lg:w-7 lg:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
             </button>
 
             <button @click="nextSlide"
-                class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-2 rounded-full transition-all duration-200"
+                class="absolute top-1/2 right-2 md:right-4 lg:right-6 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-1.5 md:p-2 lg:p-3 rounded-full transition-all duration-200"
                 aria-label="Siguiente slide">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4 md:w-6 md:h-6 lg:w-7 lg:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>
             </button>
@@ -68,7 +69,7 @@
         // Autoplay cada 7 segundos
         interval = setInterval(() => {
             nextSlide()
-        }, 7000)
+        }, 9000)
     })
 
     onUnmounted(() => {
